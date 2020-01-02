@@ -1,0 +1,70 @@
+openapi: 3.0.2
+info:
+  title: REST Interface for Redis
+  description: 'A REST interface for a Redis database'
+  version: '1.0.0'
+  contact:
+    email: patrick@covar.com
+  termsOfService: http://robokop.renci.org:7055/tos?service_long=Redis+REST+Server&provider_long=the+Translator+Consortium
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+tags:
+  - name: redis
+paths:
+  /get:
+    get:
+      tags:
+        - redis
+      summary: 'Get value(s) for key(s)'
+      description: ''
+      parameters:
+        - in: query
+          name: key
+          schema:
+            type: array
+            items:
+              type: string
+            example:
+              - request
+              - call
+              - marco
+      responses:
+        '200':
+          description: Results
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  request: response
+                  call: response
+                  marco: polo
+  /set:
+    post:
+      tags:
+        - redis
+      summary: 'Set value(s) for key(s)'
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: "Map of key: value pairs"
+              example:
+                request: response
+                call: response
+                marco: polo
+        required: true
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  request: response
+                  call: response
+                  marco: polo
